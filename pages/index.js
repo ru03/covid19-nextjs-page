@@ -44,7 +44,7 @@ const Index = ({ fetchData: { all, countries, spainHistorical } }) => {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const urls = [
     { key: 'all', url: 'https://corona.lmao.ninja/all' },
     { key: 'countries', url: 'https://corona.lmao.ninja/countries' },
