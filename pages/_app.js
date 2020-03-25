@@ -14,9 +14,11 @@ function MyApp({ Component, pageProps }) {
           crossOrigin="anonymous"
         />
       </Head>
+      <div className="min-h-screen">
       <Navbar />
       <Component {...pageProps} />
       <Footer />
+      </div>
     </>
   )
 }
