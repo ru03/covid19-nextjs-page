@@ -15,7 +15,7 @@ const CountriesList = ({ countries, hasRecovered = true }) => {
       <div className="h-64 overflow-auto">
         <ul className="h-48">
           {countries.length > 0 && countries.map(country => (
-            <Link key={country.country} href={`${country.country}`}>
+            <Link key={country.country} href={`/country/${country.country}`}>
               <li className="flex flex-row my-1 cursor-pointer">
                 <div className={`${colWidth} text-center`}>{country.country}</div>
                 <div className={`${colWidth} text-center text-blue-500`}>{country.cases}</div>

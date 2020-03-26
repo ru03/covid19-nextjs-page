@@ -48,7 +48,7 @@ export async function getServerSideProps() {
   const urls = [
     { key: 'all', url: 'https://corona.lmao.ninja/all' },
     { key: 'countries', url: 'https://corona.lmao.ninja/countries' },
-    { key: 'spainHistorical', url: 'https://corona.lmao.ninja/historical/spain' },
+    { key: 'spainHistorical', url: 'https://corona.lmao.ninja/v2/historical/Spain' },
   ];
   let allData = {};
   for (const { key, url } of urls) {
