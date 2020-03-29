@@ -13,19 +13,19 @@ const Index = ({ fetchData: { all, countries, spainHistorical } }) => {
   const countriesToday = countries
     .map(({ todayCases, country, todayDeaths }) => ({ cases: todayCases, country, deaths: todayDeaths }));
   return (
-    <div>
+    <>
       <TotalWorldCounter
         cases={all.cases}
         deaths={all.deaths}
         recovered={all.recovered}
         updateDate={all.updated}
       />
-      <div className="flex flex-row">
-        <div className="w-6/12">
+      <div className="flex flex-col lg:flex-row xl:flex-row">
+        <div className="w-full lg:w-6/12 xl:w-6/12">
           <div className="text-2xl text-center font-bold">TOTAL INFO BY COUNTRY</div>
           <CountriesList countries={countriesTotal} />
         </div>
-        <div className="w-6/12">
+        <div className="w-full lg:w-6/12 xl:w-6/12">
           <div className="text-2xl text-center font-bold">TOTAL CASES TODAY</div>
           <CountriesList
             countries={countriesToday}
@@ -33,14 +33,14 @@ const Index = ({ fetchData: { all, countries, spainHistorical } }) => {
           />
         </div>
       </div>
-      <div className="flex flex-row justify-center">
+      <div className="flex flex-col lg:flex-row xl:flex-row invisible lg:visible xl:visible justify-center">
         <div className="w-3/12" />
         <div className="w-6/12">
           <ChartCasesByCountry data={chartData} />
         </div>
         <div className="w-3/12" />
       </div>
-    </div>
+    </>
   )
 }
 

@@ -1,54 +1,63 @@
 import fetch from 'node-fetch';
+import { Bar } from 'react-chartjs-2';
+import TodayInfoData from '../../../components/TodayInfoData/TodayInfoData';
+import TotalInfoData from '../../../components/TotalInfoData/TotalInfoData';
+import ExtraInfoData from '../../../components/ExtraInfoData/ExtraInfoData';
 const Country = ({ data }) => {
+  const chart = {
+    labels: ['Cases', 'Deaths'],
+    datasets: [
+      {
+        label: 'Total',
+        backgroundColor: 'rgba(52, 128, 235,0.2)',
+        borderColor: 'rgba(52, 128, 235)',
+        borderWidth: 1,
+        hoverBackgroundColor: 'rgba(52, 128, 235,0.4)',
+        hoverBorderColor: 'rgba(52, 128, 235)',
+        data: [data.cases, data.deaths]
+      },
+      {
+        label: 'Today',
+        backgroundColor: 'rgba(255,99,132,0.2)',
+        borderColor: 'rgba(255,99,132,1)',
+        borderWidth: 1,
+        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+        hoverBorderColor: 'rgba(255,99,132,1)',
+        data: [data.todayCases, data.todayDeaths]
+      },
+    ]
+  };
+
   return (
     <div className="min-h-screen m-2">
       <div className="flex justify-center">
         <img src={data.countryInfo.flag} alt={data.country} />
       </div>
       <div className="text-5xl text-center">{data.country} Information</div>
-      <div className="flex flex-row">
-        <div className="flex flex-col w-1/3 rounded border mx-2">
-          <div className="text-center text-3xl border-b-2">
-            Today
-        </div>
-          <div className="flex flex-row justify-around my-2">
-            <div className="text-xl">
-              Cases: <span className="text-blue-500 font-bold">{data.todayCases}</span>
-            </div>
-            <div className="text-xl">
-              Deaths: <span className="text-red-500 font-bold">{data.todayDeaths}</span>
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col w-1/3 rounded border mx-2">
-          <div className="text-center text-3xl border-b-2">
-            Total
-        </div>
-          <div className="flex flex-row justify-around my-2">
-            <div className="text-xl">
-              Cases: <span className="text-blue-500 font-bold">{data.cases}</span>
-            </div>
-            <div className="text-xl">
-              Deaths: <span className="text-red-500 font-bold">{data.deaths}</span>
-            </div>
-            <div className="text-xl">
-              Recovered: <span className="text-green-500 font-bold">{data.recovered}</span>
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col w-1/3 rounded border mx-2">
-          <div className="text-center text-3xl border-b-2">
-            Extra
-        </div>
-          <div className="flex flex-row justify-around my-2">
-            <div className="text-xl">
-              Cases per 1mill.: <span className="font-bold">{data.casesPerOneMillion}</span>
-            </div>
-            <div className="text-xl">
-              Deaths per 1mill.: <span className="font-bold">{data.deathsPerOneMillion}</span>
-            </div>
-          </div>
-        </div>
+      <div className="flex flex-col lg:flex-row xl:flex-row">
+        <TodayInfoData
+          todayCases={data.todayCases}
+          todayDeaths={data.todayDeaths}
+        />
+        <TotalInfoData
+          cases={data.cases}
+          deaths={data.deaths}
+          recovered={data.recovered}
+        />
+        <ExtraInfoData
+          casesPerOneMillion={data.casesPerOneMillion}
+          deathsPerOneMillion={data.deathsPerOneMillion}
+        />
+      </div>
+      <div>
+        <Bar
+          data={chart}
+          width={100}
+          height={350}
+          options={{
+            maintainAspectRatio: false
+          }}
+        />
       </div>
     </div>
   );
