@@ -64,7 +64,7 @@ const Country = ({ data }) => {
 }
 
 export async function getServerSideProps({ params }) {
-  const res = await fetch(`https://corona.lmao.ninja/countries/${params.country}`);
+  const res = await fetch(`https://corona.lmao.ninja/v2/countries/${params.country}`);
   const data = await res.json();
   return {
     props: {
